@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Walker CRM - Estrutura Completa</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #07110d;
+      color: #ffffff;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0b2b1c, #0e5735);
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #45f58d;
+      font-size: 36px;
+    }
+
+    header p {
+      color: #c7ded1;
+      font-size: 18px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 25px;
+    }
+
+    .card {
+      background: #0d1b15;
+      border: 1px solid #20563b;
+      border-radius: 14px;
+      padding: 22px;
+      margin-bottom: 25px;
+    }
+
+    h2 {
+      color: #45f58d;
+    }
+
+    h3 {
+      color: #8affb7;
+    }
+
+    p {
+      color: #c6d8ce;
+      line-height: 1.6;
+    }
+
+    .estrutura {
+      background: #050b08;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-x: auto;
+      color: #8affb7;
+      font-family: monospace;
+      white-space: pre;
+    }
+
+    pre {
+      background: #050b08;
+      border: 1px solid #19432f;
+      border-radius: 10px;
+      padding: 18px;
+      overflow-x: auto;
+      color: #d9ffe7;
+      line-height: 1.5;
+    }
+
+    button {
+      background: #18a957;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-bottom: 10px;
+    }
+
+    button:hover {
+      background: #21c96b;
+    }
+
+    .arquivo {
+      color: #55f49a;
+      font-family: monospace;
+    }
+
+    .fluxo {
+      font-family: monospace;
+      background: #050b08;
+      padding: 20px;
+      border-radius: 10px;
+      color: #9fffc0;
+      white-space: pre;
+      overflow-x: auto;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>Walker CRM</h1>
+  <p>Estrutura completa do projeto + Terminal + Node.js</p>
+</header>
+
+<div class="container">
+
+  <!-- INTRODUÇÃO -->
+
+  <div class="card">
+    <h2>Curso Walker CRM</h2>
+
+    <p>
+      Nesta página você vai aprender a criar a estrutura inicial
+      do Walker CRM usando Terminal e Node.js.
+    </p>
+
+    <p>
+      Primeiro criamos as pastas e arquivos.
+      Depois colocamos o código dentro de cada arquivo.
+    </p>
+  </div>
+
+
+  <!-- TERMINAL -->
+
+  <div class="card">
+
+    <h2>1. Comandos do Terminal</h2>
+
+    <p>
+      Copie todos os comandos abaixo e cole no Terminal.
+    </p>
+
+    <button onclick="copiar('terminal')">
+      Copiar comandos
+    </button>
+
+    <pre id="terminal">mkdir walker-crm
+
+cd walker-crm
+
+mkdir public
+mkdir services
+
+cd public
+
+touch index.html
+touch style.css
+touch app.js
+
+cd ..
+
+touch server.js
+touch banco.json
+
+cd services
+
+touch whatsapp-api.js
+touch mensagens.js
+touch ia.js
+touch resposta.js
+
+cd ..
+
+npm init -y
+
+npm install express</pre>
+
+  </div>
+
+
+  <!-- ESTRUTURA -->
+
+  <div class="card">
+
+    <h2>2. Estrutura criada</h2>
+
+    <div class="estrutura">walker-crm/
+│
+├── server.js
+├── package.json
+├── package-lock.json
+├── banco.json
+├── node_modules/
+│
+├── public/
+│   ├── index.html
+│   ├── style.css
+│   └── app.js
+│
+└── services/
+    ├── whatsapp-api.js
+    ├── mensagens.js
+    ├── ia.js
+    └── resposta.js</div>
+
+  </div>
+
+
+  <!-- SERVER -->
+
+  <div class="card">
+
+    <h2>3. server.js</h2>
+
+    <h3 class="arquivo">walker-crm/server.js</h3>
+
+    <p>
+      É o servidor principal do Walker CRM.
+    </p>
+
+    <button onclick="copiar('server')">
+      Copiar código
+    </button>
+
+    <pre id="server">const express = require("express");
+const path = require("path");
+
+const app = express();
+
+const PORT = 3000;
+
+app.use(express.json());
+
+app.use(
+  express.static(
+    path.join(__dirname, "public")
+  )
+);
+
+app.get("/api/status", (req, res) => {
+
+  res.json({
+    sistema: "Walker CRM",
+    status: "online"
+  });
+
+});
+
+app.listen(PORT, () => {
+
+  console.log(
+    `Walker CRM rodando na porta ${PORT}`
+  );
+
+});</pre>
+
+  </div>
+
+
+  <!-- BANCO -->
+
+  <div class="card">
+
+    <h2>4. banco.json</h2>
+
+    <h3 class="arquivo">walker-crm/banco.json</h3>
+
+    <p>
+      Banco inicial para treinamento.
+      Depois podemos trocar por um banco de dados real.
+    </p>
+
+    <button onclick="copiar('banco')">
+      Copiar código
+    </button>
+
+    <pre id="banco">{
+  "clientes": [],
+  "conversas": [],
+  "mensagens": [],
+  "vendas": [],
+  "orcamentos": [],
+  "atendentes": [],
+  "etiquetas": []
+}</pre>
+
+  </div>
+
+
+  <!-- INDEX -->
+
+  <div class="card">
+
+    <h2>5. public/index.html</h2>
+
+    <h3 class="arquivo">walker-crm/public/index.html</h3>
+
+    <p>
+      É a página principal que aparece no navegador.
+    </p>
+
+    <button onclick="copiar('index')">
+      Copiar código
+    </button>
+
+    <pre id="index">&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+
+&lt;head&gt;
+
+  &lt;meta charset="UTF-8"&gt;
+
+  &lt;meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  &gt;
+
+  &lt;title&gt;Walker CRM&lt;/title&gt;
+
+  &lt;link
+    rel="stylesheet"
+    href="style.css"
+  &gt;
+
+&lt;/head&gt;
+
+&lt;body&gt;
+
+  &lt;h1&gt;Walker CRM&lt;/h1&gt;
+
+  &lt;p&gt;
+    Central de atendimento
+  &lt;/p&gt;
+
+  &lt;script src="app.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+
+&lt;/html&gt;</pre>
+
+  </div>
+
+
+  <!-- STYLE -->
+
+  <div class="card">
+
+    <h2>6. public/style.css</h2>
+
+    <h3 class="arquivo">walker-crm/public/style.css</h3>
+
+    <p>
+      Controla o visual da página.
+    </p>
+
+    <button onclick="copiar('style')">
+      Copiar código
+    </button>
+
+    <pre id="style">* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #07110d;
+  color: white;
+  padding: 40px;
+}
+
+h1 {
+  color: #45f58d;
+}
+
+p {
+  color: #c7d8cf;
+}</pre>
+
+  </div>
+
+
+  <!-- APP -->
+
+  <div class="card">
+
+    <h2>7. public/app.js</h2>
+
+    <h3 class="arquivo">walker-crm/public/app.js</h3>
+
+    <p>
+      Controla as funções da página.
+    </p>
+
+    <button onclick="copiar('app')">
+      Copiar código
+    </button>
+
+    <pre id="app">console.log(
+  "Walker CRM iniciado"
+);
+
+fetch("/api/status")
+  .then(response => response.json())
+  .then(data => {
+
+    console.log(data);
+
+  });</pre>
+
+  </div>
+
+
+  <!-- WHATSAPP -->
+
+  <div class="card">
+
+    <h2>8. services/whatsapp-api.js</h2>
+
+    <h3 class="arquivo">
+      walker-crm/services/whatsapp-api.js
+    </h3>
+
+    <p>
+      Arquivo reservado para a integração com o WhatsApp Business.
+    </p>
+
+    <button onclick="copiar('whatsapp')">
+      Copiar código
+    </button>
+
+    <pre id="whatsapp">async function enviarWhatsApp(
+  numero,
+  mensagem
+) {
+
+  console.log(
+    "Número:",
+    numero
+  );
+
+  console.log(
+    "Mensagem:",
+    mensagem
+  );
+
+  return {
+    sucesso: true
+  };
+
+}
+
+module.exports = {
+  enviarWhatsApp
+};</pre>
+
+  </div>
+
+
+  <!-- MENSAGENS -->
+
+  <div class="card">
+
+    <h2>9. services/mensagens.js</h2>
+
+    <h3 class="arquivo">
+      walker-crm/services/mensagens.js
+    </h3>
+
+    <p>
+      Organiza as mensagens recebidas e enviadas.
+    </p>
+
+    <button onclick="copiar('mensagens')">
+      Copiar código
+    </button>
+
+    <pre id="mensagens">function criarMensagem(
+  clienteId,
+  texto,
+  origem
+) {
+
+  return {
+
+    id: Date.now(),
+
+    clienteId: clienteId,
+
+    texto: texto,
+
+    origem: origem,
+
+    data:
+      new Date().toISOString()
+
+  };
+
+}
+
+module.exports = {
+  criarMensagem
+};</pre>
+
+  </div>
+
+
+  <!-- IA -->
+
+  <div class="card">
+
+    <h2>10. services/ia.js</h2>
+
+    <h3 class="arquivo">
+      walker-crm/services/ia.js
+    </h3>
+
+    <p>
+      Arquivo reservado para a inteligência artificial do atendimento.
+    </p>
+
+    <button onclick="copiar('ia')">
+      Copiar código
+    </button>
+
+    <pre id="ia">async function analisarMensagem(
+  mensagem
+) {
+
+  return {
+
+    intencao: "atendimento",
+
+    mensagemOriginal:
+      mensagem,
+
+    sugestao:
+      "Olá! Como posso ajudar você?"
+
+  };
+
+}
+
+module.exports = {
+  analisarMensagem
+};</pre>
+
+  </div>
+
+
+  <!-- RESPOSTA -->
+
+  <div class="card">
+
+    <h2>11. services/resposta.js</h2>
+
+    <h3 class="arquivo">
+      walker-crm/services/resposta.js
+    </h3>
+
+    <p>
+      Prepara a resposta depois da análise da mensagem.
+    </p>
+
+    <button onclick="copiar('resposta')">
+      Copiar código
+    </button>
+
+    <pre id="resposta">function prepararResposta(
+  analise
+) {
+
+  if (
+    analise.intencao ===
+    "atendimento"
+  ) {
+
+    return analise.sugestao;
+
+  }
+
+  return "Vou encaminhar seu atendimento.";
+
+}
+
+module.exports = {
+  prepararResposta
+};</pre>
+
+  </div>
+
+
+  <!-- PACKAGE -->
+
+  <div class="card">
+
+    <h2>12. package.json</h2>
+
+    <p>
+      O comando npm init -y cria esse arquivo automaticamente.
+    </p>
+
+    <p>
+      Não é necessário criar manualmente
+      <strong>node_modules</strong> nem
+      <strong>package-lock.json</strong>.
+    </p>
+
+  </div>
+
+
+  <!-- FLUXO -->
+
+  <div class="card">
+
+    <h2>13. Fluxo do Walker CRM</h2>
+
+    <div class="fluxo">CLIENTE
+   ↓
+WHATSAPP
+   ↓
+whatsapp-api.js
+   ↓
+mensagens.js
+   ↓
+ia.js
+   ↓
+resposta.js
+   ↓
+ATENDENTE / IA
+   ↓
+ORÇAMENTO
+   ↓
+AGENDAMENTO
+   ↓
+VENDA
+   ↓
+HISTÓRICO DO CLIENTE</div>
+
+  </div>
+
+
+  <!-- PRÓXIMAS AULAS -->
+
+  <div class="card">
+
+    <h2>14. Próximas etapas</h2>
+
+    <p>Depois da estrutura inicial, o projeto poderá evoluir para:</p>
+
+    <ul>
+      <li>Dashboard</li>
+      <li>Clientes</li>
+      <li>Conversas em tempo real</li>
+      <li>100 atendimentos simultâneos</li>
+      <li>Atendentes</li>
+      <li>Etiquetas</li>
+      <li>Orçamentos</li>
+      <li>Agendamentos</li>
+      <li>Vendas</li>
+      <li>Histórico do cliente</li>
+      <li>Integração com WhatsApp</li>
+      <li>IA para atendimento</li>
+      <li>Banco de dados</li>
+      <li>Notificações</li>
+    </ul>
+
+  </div>
+
+</div>
+
+
+<script>
+
+function copiar(id) {
+
+  const elemento =
+    document.getElementById(id);
+
+  navigator.clipboard.writeText(
+    elemento.innerText
+  );
+
+  alert("Código copiado!");
+
+}
+
+</script>
+
+</body>
+</html>
