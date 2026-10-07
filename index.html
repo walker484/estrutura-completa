@@ -61,7 +61,8 @@
       line-height: 1.6;
     }
 
-    .estrutura {
+    .estrutura,
+    .fluxo {
       background: #050b08;
       padding: 20px;
       border-radius: 10px;
@@ -100,14 +101,41 @@
       font-family: monospace;
     }
 
-    .fluxo {
-      font-family: monospace;
+    /* CURSO NODE.JS */
+
+    .node-curso {
+      text-align: center;
+    }
+
+    .node-imagem {
+      width: 260px;
+      max-width: 100%;
+      padding: 25px;
       background: #050b08;
-      padding: 20px;
-      border-radius: 10px;
-      color: #9fffc0;
-      white-space: pre;
-      overflow-x: auto;
+      border: 1px solid #20563b;
+      border-radius: 14px;
+      margin: 15px auto 20px;
+      display: block;
+      transition: 0.3s;
+    }
+
+    .node-imagem:hover {
+      transform: scale(1.04);
+      border-color: #45f58d;
+    }
+
+    .botao-node {
+      display: inline-block;
+      background: #18a957;
+      color: white;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .botao-node:hover {
+      background: #21c96b;
     }
   </style>
 </head>
@@ -135,6 +163,46 @@
       Primeiro criamos as pastas e arquivos.
       Depois colocamos o código dentro de cada arquivo.
     </p>
+  </div>
+
+
+  <!-- CURSO NODE.JS -->
+
+  <div class="card node-curso">
+
+    <h2>Curso de Node.js</h2>
+
+    <p>
+      Esta etapa é importante para entender a tecnologia
+      que estamos usando no servidor do Walker CRM.
+    </p>
+
+    <p>
+      O curso aborda fundamentos do Node.js, módulos,
+      REST API, MongoDB, upload de arquivos e outros assuntos.
+    </p>
+
+    <a
+      href="https://www.udemy.com/course/nodejs-curso-completo/?couponCode=PMNVD2025"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img
+        src="https://nodejs.org/static/logos/nodejsLight.svg"
+        alt="Node.js"
+        class="node-imagem"
+      >
+    </a>
+
+    <a
+      href="https://www.udemy.com/course/nodejs-curso-completo/?couponCode=PMNVD2025"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="botao-node"
+    >
+      Acessar curso de Node.js
+    </a>
+
   </div>
 
 
@@ -654,7 +722,9 @@ HISTÓRICO DO CLIENTE</div>
 
     <h2>14. Próximas etapas</h2>
 
-    <p>Depois da estrutura inicial, o projeto poderá evoluir para:</p>
+    <p>
+      Depois da estrutura inicial, o projeto poderá evoluir para:
+    </p>
 
     <ul>
       <li>Dashboard</li>
